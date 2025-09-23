@@ -19,10 +19,12 @@ function Dashboard() {
   const { user } = useUser();
   const router = useRouter();
   const { channel, setActiveChannel } = useChatContext();
-  const { isOpen } = useSidebar();
+  const { setOpen } = useSidebar();
 
   const handleCall = () => {
-    console.log("Calling...");
+    if (!channel) return;
+    router.push(`/dashboard/video-call/${channel.id}`);
+    setOpen(false);
   };
 
   const handleLeaveChat = async () => {
